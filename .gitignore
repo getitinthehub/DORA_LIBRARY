@@ -48,7 +48,6 @@ Temporary Items
 #======================
 
 #ignore everything
-*
 PVB_OuderAvonden.sln
 PVB_OuderAvonden.v12.sln
 PVB_OuderAvonden/App_Data

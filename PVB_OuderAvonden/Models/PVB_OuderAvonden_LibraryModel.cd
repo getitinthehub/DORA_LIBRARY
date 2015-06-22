@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="DORA.Objects.Agenda.Agenda">
+    <Position X="8.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAQAAAAAAAAAAAAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>Objects\Agenda.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DORA.Objects.Agenda.AgendaItem">
+    <Position X="6.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAgAgAAQAAAACAAAAAQAAAAAAAgA=</HashCode>
+      <FileName>Objects\Agenda.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DORA.Objects.Docent">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAAAAgAAAAAAAAAAAAAAAQBAAAEAAAAA=</HashCode>
+      <FileName>Objects\Docent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DORA.Objects.Gebruiker">
+    <Position X="6.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAQAAAAAEAAAAAAAAgAAAEAAAAA=</HashCode>
+      <FileName>Objects\Gebruiker.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DORA.Objects.Persoon">
+    <Position X="4.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgACCAAgACAAAgAAAAAAAgAAAAAAIgAgAAAAAA=</HashCode>
+      <FileName>Objects\Persoon.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DORA.Objects.Agenda.Gesprek">
+    <Position X="8.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAACAABkAEABAAgBAAAAACAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Objects\Gesprek.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DORA.Objects.Student">
+    <Position X="3" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAABEAAAAAAAAAAAAAAAAAAAAABAAEAAACA=</HashCode>
+      <FileName>Objects\Student.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DORA.Objects.DocentBeschikbaarheid">
+    <Position X="1.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAgAAgAIAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Objects\DocentBeschikbaarheid.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DORA.Objects.Klas">
+    <Position X="10" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>Objects\Klas.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DORA.Objects.Lokaal">
+    <Position X="10" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Objects\Lokaal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DORA.Objects.UniekeCode">
+    <Position X="1.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAgAAAAAAAAEAAAAAACAAAAAAA=</HashCode>
+      <FileName>Objects\UniekeCode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>
