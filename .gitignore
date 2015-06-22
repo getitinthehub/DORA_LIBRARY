@@ -51,8 +51,13 @@ Temporary Items
 *
 PVB_OuderAvonden.sln
 PVB_OuderAvonden.v12.sln
+PVB_OuderAvonden/App_Data
+PVB_OuderAvonden/bin
+PVB_OuderAvonden/obj
+PVB_OuderAvonden/Properties
 
 #do not ignore the core files of the project
+!PVB_OuderAvonden
 !PVB_OuderAvonden/CodeGenerator
 !PVB_OuderAvonden/Objects
 !PVB_OuderAvonden/Database
