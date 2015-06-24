@@ -46,30 +46,31 @@ namespace DORA.Objects.Agenda
 
     public class AgendaItem
     {
-        public int AgendaItemID { get; private set; }
         public Gesprek AgendaItemGesprek { get; private set; }
         public int GesprekID { get; private set; }
         public string Datum { get; private set; }
-        public string Tijd { get; private set; }
+        public string BeginTijd { get; private set; }
+        public string EindTijd { get; private set; }
         public string Locatie { get; private set; }
         public string Lokaal { get; private set; }
 
-        public AgendaItem(int agendaItemID, int gesprekID, string datum, string tijd, string locatie, string lokaal)
+        public AgendaItem(Gesprek agendaItemGesprek, string datum, string begintijd, string eindTijd, string locatie, string lokaal)
         {
-            AgendaItemID = agendaItemID;
-            GesprekID = gesprekID;
+            AgendaItemGesprek = agendaItemGesprek;
+            GesprekID = agendaItemGesprek.ID;
             Datum = datum;
-            Tijd = tijd;
+            BeginTijd = begintijd;
+            EindTijd = eindTijd;
             Locatie = locatie;
             Lokaal = lokaal;
         }
-        public AgendaItem(int agendaItemID, Gesprek gesprek, string datum, string tijd, string locatie, string lokaal)
+        public AgendaItem(int gesprekID, string datum, string begintijd, string eindTijd, string locatie, string lokaal)
         {
-            AgendaItemID = agendaItemID;
-            AgendaItemGesprek = gesprek;
-            GesprekID = gesprek.ID;
+            AgendaItemGesprek = null;
+            GesprekID = gesprekID;
             Datum = datum;
-            Tijd = tijd;
+            BeginTijd = begintijd;
+            EindTijd = eindTijd;
             Locatie = locatie;
             Lokaal = lokaal;
         }

@@ -70,11 +70,16 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BestandImporteren\StudentenBestand.cs" />
+    <Compile Include="CodeGenerator\ENUM_UniekeCodeType.cs" />
+    <Compile Include="CodeGenerator\LaatstGegenereerdeCode.cs" />
+    <Compile Include="CodeGenerator\UniekeCodeGenerator.cs" />
     <Compile Include="Database\DBConnector.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Objects\Agenda.cs" />
+    <Compile Include="Security\AppSecurity.cs" />
     <Compile Include="Objects\Docent.cs" />
     <Compile Include="Objects\DocentBeschikbaarheid.cs" />
     <Compile Include="Objects\Gebruiker.cs" />
@@ -88,7 +93,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="CodeGenerator\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

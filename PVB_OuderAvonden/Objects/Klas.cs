@@ -8,13 +8,13 @@ namespace DORA.Objects
 {
     public class Klas
     {
-        public string Klas { get; private set; }
-        public int DocentID { get; private set; }
+        public string klas { get; private set; }
+        public string DocentAfkorting { get; private set; }
 
-        public Klas(string klas, int docentID)
+        public Klas(string _klas, string docentAfkorting)
         {
-            Klas = klas;
-            DocentID = docentID;
+            klas = _klas;
+            DocentAfkorting = docentAfkorting;
         }
     }
 }

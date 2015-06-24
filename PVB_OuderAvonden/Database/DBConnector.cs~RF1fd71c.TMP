@@ -1,0 +1,298 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Data.SqlClient;
+using DORA.Objects;
+
+namespace DORA.Database
+{
+    public class DBConnector
+    {
+        private string ConnectionString { get; private set; }
+        private Dictionary<string, object> TableClassesLink { get; private set; }
+        private SqlConnection sqlConn { get; private set; }
+        public string ErrorCode { get; private set; }
+
+        public DBConnector(string connectionString)
+        {
+            ConnectionString = connectionString;
+            sqlConn = new SqlConnection(ConnectionString);
+        }
+
+        public bool ValideerGebruiker(Gebruiker g, out Persoon p)
+        {
+            bool flag = false;
+
+            if(g == null)
+            {
+                ErrorCode = "Null value 'Gebruiker' passed through";
+                p = null;
+                return false;
+            }
+            else
+            {
+                SqlCommand sqlComm = new SqlCommand("spGetPersoon", sqlConn);
+                sqlComm.CommandType = System.Data.CommandType.StoredProcedure;
+                sqlComm.Parameters.AddWithValue("@GEBRUIKERSNAAM", g.GebruikersNaam);
+                sqlComm.Parameters.AddWithValue("@WACHTRWOORD", g.WachtWoord);
+                
+                Persoon persoonGegevens = null;
+                try
+                {
+                    if (sqlConn.State != System.Data.ConnectionState.Open)
+                    {
+                        sqlConn.Open();
+                        SqlDataReader reader = sqlComm.ExecuteReader();
+                        if(reader.HasRows)
+                        {
+                            while(reader.Read())
+                            {
+                                persoonGegevens = new Persoon((int)reader["PersoonID"],
+                                    (string)reader["Voornaam"], (string)reader["Achternaam"], (string)reader["Tussenvoegsel"], (string)reader["Adres"],
+                                    (string)reader["Postcode"], (string)reader["Geboortedatum"], (string)reader["Woonplaats"], (string)reader["Geslacht"],
+                                    (string)reader["Telefoon1"], (string)reader["Telefoon2"], (string)reader["Email"]);
+                            }
+                        }
+                    }
+                }
+                catch(Exception ex)
+                {
+                    ErrorCode = ex.Message;
+                }
+                finally
+                {
+                    sqlConn.Close();
+                }
+                p = persoonGegevens;
+                if(persoonGegevens == null)
+                {
+                    flag = false;
+                }
+                else
+                {
+                    flag = true;
+                }
+            }
+            return flag;
+        }
+
+        public bool GetPersoon(Gebruiker g, out Persoon p)
+        {
+            bool flag = false;
+            Persoon pOpgehaald = null;
+            if(g == null)
+            {
+                ErrorCode = "Null value 'Gebruiker' passed through";
+                p = null;
+                return false;
+            }
+            else
+            {
+                SqlCommand sqlComm = new SqlCommand("spGetPersoon", sqlConn);
+                sqlComm.CommandType = System.Data.CommandType.StoredProcedure;
+                sqlComm.Parameters.AddWithValue("@GEBRUIKERSNAAM", g.GebruikersNaam);
+                sqlComm.Parameters.AddWithValue("@WACHTWOORD", g.WachtWoord);
+
+                try
+                {
+                    sqlConn.Open();
+                    SqlDataReader reader = sqlComm.ExecuteReader();
+
+                    if(reader.HasRows)
+                    {
+                        pOpgehaald = new Persoon((int)reader["ID"], (string)reader["VoorNaam"], (string)reader["AchterNaam"], (string)reader["TussenVoegsels"], (string)reader["Adres"],
+                            (string)reader["PostCode"], (string)reader["GeboorteDatum"], (string)reader["Email"], (string)reader["Woonplaats"], (string)reader["Geslacht"], (string)reader["Telefoon1"]);
+                    }
+                }
+                catch(Exception ex)
+                {
+                    ErrorCode = ex.Message;
+                }
+                finally
+                {
+                    sqlConn.Close();
+                }
+            }
+
+            p = pOpgehaald;
+            return flag;
+        }
+
+        public List<Klas> GetKlassen()
+        {
+            List<Klas> klassen = new List<Klas>();
+
+            try
+            {
+                sqlConn.Open();
+                SqlCommand sqlComm = new SqlCommand("spGetKlassen", sqlConn);
+                SqlDataReader reader = sqlComm.ExecuteReader();
+                if(reader.HasRows)
+                {
+                    while(reader.Read())
+                    {
+                        klassen.Add(new Klas((string)reader["Klas"], (int)reader["DocentAfkorting"]));
+                    }
+                }
+
+            }
+            catch(Exception ex)
+            {
+                ErrorCode = ex.Message;
+            }
+            finally
+            {
+                sqlConn.Close();
+            }
+
+            return klassen;
+        }
+
+        public List<Lokaal> GetLokalen()
+        {
+            List<Lokaal> Lokalen = new List<Lokaal>();
+
+            try
+            {
+                sqlConn.Open();
+                SqlCommand sqlComm = new SqlCommand("spGetLokalen", sqlConn);
+                SqlDataReader reader = sqlComm.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        Lokalen.Add(new Lokaal((string)reader["Lokaal"]));
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                ErrorCode = ex.Message;
+            }
+            finally
+            {
+                sqlConn.Close();
+            }
+
+            return Lokalen;
+        }
+
+        public List<Docent> GetDocenten()
+        {
+            List<Docent> Docenten = new List<Docent>();
+
+            try
+            {
+                sqlConn.Open();
+                SqlCommand sqlComm = new SqlCommand("spGetDocenten", sqlConn);
+                SqlDataReader reader = sqlComm.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        Docenten.Add(new Docent((string)reader["DocentAfkorting"], (bool)reader["Beheerder"], (int)reader["PersoonID"],
+                            (string)reader["Voornaam"], (string)reader["Achternaam"], (string)reader["Tussenvoegsel"], (string)reader["Adres"],
+                            (string)reader["Postcode"], (string)reader["Geboortedatum"], (string)reader["Woonplaats"], (string)reader["Geslacht"],
+                            (string)reader["Telefoon1"], (string)reader["Telefoon2"], (string)reader["Email"]));
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                ErrorCode = ex.Message;
+            }
+            finally
+            {
+                sqlConn.Close();
+            }
+
+            return Docenten;
+        }
+
+        public bool GetDocent(string docentAfkorting, out Docent d)
+        {
+            bool flag = false;
+            Docent dOpgehaald = null;
+
+            try
+            {
+                sqlConn.Open();
+                SqlCommand sqlComm = new SqlCommand("spGetDocent", sqlConn);
+                SqlDataReader reader = sqlComm.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        dOpgehaald = new Docent((string)reader["DocentAfkorting"], (bool)reader["Beheerder"], (int)reader["PersoonID"],
+                            (string)reader["Voornaam"], (string)reader["Achternaam"], (string)reader["Tussenvoegsel"], (string)reader["Adres"], 
+                            (string)reader["Postcode"], (string)reader["Geboortedatum"], (string)reader["Woonplaats"], (string)reader["Geslacht"], 
+                            (string)reader["Telefoon1"], (string)reader["Telefoon2"], (string)reader["Email"]);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorCode = ex.Message;
+            }
+            finally
+            {
+                sqlConn.Close();
+            }
+
+            d = dOpgehaald;
+            return flag;
+        }
+
+        public bool GetStudent(string studentNummer, out Student s)
+        {
+            bool flag = false;
+            Student sOpgehaald = null;
+
+            try
+            {
+                sqlConn.Open();
+                SqlCommand sqlComm = new SqlCommand("spGetStudent", sqlConn);
+                SqlDataReader reader = sqlComm.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        sOpgehaald = new Student((int)reader["StudentNummer"], (int)reader["ID"], (string)reader["Klas"], (string)reader["Opleiding"],
+                            (bool)reader["Leerplichtig"], (string)reader["VorigeSchool"], (string)reader["Voornaam"], (string)reader["Achternaam"], 
+                            (string)reader["Tussenvoegsel"], (string)reader["Adres"], (string)reader["Postcode"], (string)reader["Geboortedatum"],
+                            (string)reader["Woonplaats"], (string)reader["Geslacht"], (string)reader["Telefoon1"], (string)reader["Telefoon2"], 
+                            (string)reader["Email"]);
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                ErrorCode = ex.Message;
+            }
+            finally
+            {
+                sqlConn.Close();
+            }
+
+            s = sOpgehaald;
+            return flag;
+        }
+
+        public List<>
+
+        /*  TODO
+         *  GetAgenda
+         *  GetDocentBeschikbaarheid
+         *  GetBeschikbaarheden
+         *  GetGesprekken
+         *  GetSpecifiekGesprek
+         *  GetUniekeCodes
+         *  GetSpecifiekUniekeCode
+         */ 
+    }
+}

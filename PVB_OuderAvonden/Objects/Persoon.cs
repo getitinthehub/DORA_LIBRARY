@@ -21,7 +21,23 @@ namespace DORA.Objects
         public string Geslacht { get; private set; }
         public string Telefoon1 { get; private set; }
         public string Telefoon2 { get; private set; }
-        
+        public bool Status { get; set; }
+        public Persoon(string voornaam, string achternaam, string tussenvoegsels,
+            string adres, string postcode, string geboortedatum, string email, string woonplaats,
+            string geslacht, string telefoon1)
+        {
+            VoorNaam = voornaam;
+            AchterNaam = achternaam;
+            TussenVoegsels = tussenvoegsels;
+            Adres = adres;
+            PostCode = postcode;
+            GeboorteDatum = geboortedatum;
+            Email = email;
+            Woonplaats = woonplaats;
+            Geslacht = geslacht;
+            Telefoon1 = telefoon1;
+        }
+
         public Persoon(int id, string voornaam, string achternaam, string tussenvoegsels,
             string adres, string postcode, string geboortedatum, string email, string woonplaats,
             string geslacht, string telefoon1)
@@ -38,6 +54,7 @@ namespace DORA.Objects
             Geslacht = geslacht;
             Telefoon1 = telefoon1;
         }
+
         public Persoon(int id, string voornaam, string achternaam, string tussenvoegsels,
             string adres, string postcode, string geboortedatum, string email, string woonplaats,
             string geslacht, string telefoon1, string telefoon2)

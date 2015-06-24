@@ -9,13 +9,13 @@ namespace DORA.Objects
     public class UniekeCode
     {
         public string Code { get; private set; }
-        public int Studentnummer { get; private set; }
+        public string StudentNummer { get; private set; }
         public bool isKoppelCode { get; private set; }
 
-        public UniekeCode(string code, int studentnummer, bool iskoppelCode)
+        public UniekeCode(string code, string studentnummer, bool iskoppelCode)
         {
             Code = code;
-            Studentnummer = studentnummer;
+            StudentNummer = studentnummer;
             isKoppelCode = iskoppelCode;
         }
     }

@@ -8,11 +8,11 @@ namespace DORA.Objects
 {
     public class Lokaal
     {
-        public string Lokaal { get; set; }
+        public string lokaal { get; set; }
         public Lokaal(){}
-        public Lokaal(string lokaal)
+        public Lokaal(string _lokaal)
         {
-            Lokaal = lokaal;
+            lokaal = _lokaal;
         }
 
     }
